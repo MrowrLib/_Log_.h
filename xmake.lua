@@ -5,7 +5,7 @@ set_toolchains("msvc")
 add_requires("spdlog")
 
 target("Logging")
-    set_kind("phony")
+    set_kind("library")
     add_headerfiles("include/(**.h)")
     add_includedirs("include", {public = true})
 
