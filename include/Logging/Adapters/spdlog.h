@@ -33,5 +33,5 @@ namespace Logging::Adapters {
     };
 }
 
-#define OutputLogLine(...) \
+#define Logging_Log(...) \
     Logging::Adapters::SpdlogAdapter::GetSingleton().SpdlogLogger->info(__VA_ARGS__)

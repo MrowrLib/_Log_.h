@@ -10,7 +10,7 @@ namespace Logging::Config {
     std::string LogFilePath = "";
 }
 
-#define SetLogFilePath(filePath)                                    \
+#define Logging_SetLogFilePath(filePath)                            \
     Logging::Private::OnLoadFunctionRunner ___loggingLogFileSetup { \
         []() { Logging::Config::LogFilePath = filePath; }           \
     }
