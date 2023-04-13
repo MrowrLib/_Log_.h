@@ -3,7 +3,9 @@
 ```cpp
 #include <_Log_>
 
-int main() { _Log_("A great number is: {}", 42); }
+void Example() {
+    _Log_("A great number is: {}", 42);
+}
 ```
 
 ## Installation
