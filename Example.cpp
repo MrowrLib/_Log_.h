@@ -1,5 +1,5 @@
-#include <Logging.h>
+#include <_Logging_.h>
 
-SetLogFilePath("Example.log");
+_LogToFile_("Example.log");
 
-int main() { Log("Hello {}", "World"); }
+int main() { _Log_("Hello {}", "World"); }
