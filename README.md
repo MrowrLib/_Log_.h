@@ -1,7 +1,7 @@
-# `#include <_Logging_.h>`
+# `#include <_Logging_>`
 
 ```cpp
-#include <_Logging_.h>
+#include <_Logging_>
 
 int main() { _Log_("A great number is: {}", 42); }
 ```
@@ -37,7 +37,7 @@ Searching across GitHub, there are many libraries which...
 
 Because _almost all_ of my libraries use this library, I wanted to make **sure** that this library's names were very, **_very_ unlikely to conflict with other libraries**.
 
-Hence `#include <_Logging_.h>` and `_Log_` / `_LogToFile_`.
+Hence `#include <_Logging_>` and `_Log_` / `_LogToFile_`.
 
 I couldn't find anyone using `_Log_()` (_camel case_) across GitHub.
 
@@ -56,6 +56,9 @@ _Log_("A great number is: {}", 42);
 // Set a target filename for the log
 _LogToFile_("my.log"); // (Optional)
 ```
+
+> _Recommendation: never use `_LogToFile_` in libraries. It's global. Let users configure this._
+> _(You can always provide your own interface for users to configure it)_
 
 This makes it _super easy_ for folks to use their own logging libraries.
 

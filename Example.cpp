@@ -1,5 +1,5 @@
-#include <_Logging_.h>
+#include <_Logging_>
 
-_LogToFile_("Example.log");
+// _LogToFile_("Example.log");
 
 int main() { _Log_("Hello {}", "World"); }
