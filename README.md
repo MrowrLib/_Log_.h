@@ -71,7 +71,7 @@ _Log_("A great number is: {}", 42);
 _LogToFile_("my.log"); // (Optional)
 ```
 
-> _Recommendation: never use `_LogToFile_` in libraries. It's global. Let users configure this._
+> _Recommendation: never use `_LogToFile_` in libraries. It's global. Let users configure this._  
 > _(You can always provide your own interface for users to configure it)_
 
 This makes it _super easy_ for folks to use their own logging libraries.
