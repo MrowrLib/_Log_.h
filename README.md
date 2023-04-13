@@ -37,7 +37,7 @@ By default, however, it will do nothing.
 ## Naming?
 
 Searching across GitHub, there are many libraries which...
-- `#include <Logging_>` or `#include <Log.h>`
+- `#include <_Logging_>` or `#include <Log.h>`
 - Have a `Logging` or `Log` class or namespace
 - Have a `Log` or `LOG` or `_log_` or `_LOG_` function or macro
 
@@ -84,7 +84,7 @@ So libraries can safely `_Log_` and it won't do anything.
 
 ### spdlog
 
-If `spdlog` headers are detected when `<Logging_>` is included, then `_Log_` is defined as a macro that uses `spdlog`.
+If `spdlog` headers are detected when `<_Logging_>` is included, then `_Log_` is defined as a macro that uses `spdlog`.
 
 If no target filename is set via `_LogToFile_`, then `spdlog` will log to `stderr`.
 
