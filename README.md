@@ -6,6 +6,18 @@
 int main() { _Log_("A great number is: {}", 42); }
 ```
 
+## Installation
+
+```lua
+-- xmake
+add_repositories("MrowrLib https://github.com/MrowrLib/Packages.git")
+add_requires("_Logging_")
+```
+
+```cmake
+# CMake (coming soon)
+```
+
 ## What?
 
 A simple logging interface for C++ libraries.
@@ -18,9 +30,20 @@ But I want folks to be able to BYOL: **B**ring **Y**our **O**wn **L**ogger.
 
 ## Naming?
 
-I want to use names that are _very_ unlikely to conflict with other libraries, so you can _very_ **safely** use this in your own libraries.
+Searching across GitHub, there are many libraries which...
+- `#include <Logging.h>` or `#include <Log.h>`
+- Have a `Logging` or `Log` class or namespace
+- Have a `Log` or `LOG` or `_log_` or `_LOG_` function or macro
 
-Hence `_Logging_.h` and `_Log_`.
+Because _almost all_ of my libraries use this library, I wanted to make **sure** that this library's names were very, **_very_ unlikely to conflict with other libraries**.
+
+Hence `#include <_Logging_.h>` and `_Log_` / `_LogToFile_`.
+
+I couldn't find anyone using `_Log_()` (_camel case_) across GitHub.
+
+**You can safely use this in your own libraries**.
+
+> _I also don't like to "sign" my own work, so I didn't want something like `<Mrowr/Logging.h>`_
 
 ## How?
 
