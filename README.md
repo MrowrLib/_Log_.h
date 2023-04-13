@@ -24,9 +24,15 @@ A simple logging interface for C++ libraries.
 
 ## Why?
 
-I want my libraries to support logs of logging.
+I want my libraries to all support logging.
 
 But I want folks to be able to BYOL: **B**ring **Y**our **O**wn **L**ogger.
+
+Want to use `spdlog`? Great!
+
+This will _automatically_ detect `spdlog` and use it.
+
+By default, however, it will do nothing.
 
 ## Naming?
 
@@ -44,6 +50,14 @@ I couldn't find anyone using `_Log_()` (_camel case_) across GitHub.
 **You can safely use this in your own libraries**.
 
 > _I also don't like to "sign" my own work, so I didn't want something like `<Mrowr/Logging.h>`_
+
+## Log Levels?
+
+Meh.
+
+Use your own logger if you want log levels.
+
+I really wanted **one** simple `_Log_` macro that would work for all libraries.
 
 ## How?
 
