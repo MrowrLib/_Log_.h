@@ -37,7 +37,7 @@ By default, however, it will do nothing.
 ## Naming?
 
 Searching across GitHub, there are many libraries which...
-- `#include <Logging.h>` or `#include <Log.h>`
+- `#include <Logging_>` or `#include <Log.h>`
 - Have a `Logging` or `Log` class or namespace
 - Have a `Log` or `LOG` or `_log_` or `_LOG_` function or macro
 
@@ -49,7 +49,7 @@ I couldn't find anyone using `_Log_()` (_camel case_) across GitHub.
 
 **You can safely use this in your own libraries**.
 
-> _I also don't like to "sign" my own work, so I didn't want something like `<Mrowr/Logging.h>`_
+> _I also don't like to "sign" my own work, so I didn't want something like `<Mrowr/Logging_>`_
 
 ## Log Levels?
 
@@ -84,7 +84,7 @@ So libraries can safely `_Log_` and it won't do anything.
 
 ### spdlog
 
-If `spdlog` headers are detected when `<Logging.h>` is included, then `_Log_` is defined as a macro that uses `spdlog`.
+If `spdlog` headers are detected when `<Logging_>` is included, then `_Log_` is defined as a macro that uses `spdlog`.
 
 If no target filename is set via `_LogToFile_`, then `spdlog` will log to `stderr`.
 
