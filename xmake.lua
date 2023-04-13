@@ -1,4 +1,4 @@
-set_languages("c++23")
+set_languages("c++20")
 add_rules("mode.debug")
 set_toolchains("msvc")
 
