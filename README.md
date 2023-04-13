@@ -88,7 +88,7 @@ If `spdlog` headers are detected when `<_Logging_>` is included, then `_Log_` is
 
 If no target filename is set via `_LogToFile_`, then `spdlog` will log to `stderr`.
 
-> Reminder: `_LogToFile_` must be called before any library calls `_Log_`, or else the default `stderr` logger will be used.
+> Note: `_LogToFile_` must be called before any calls to `_Log_` or the default `stderr` logger will be used.
 
 ### Bring Your Own Logger
 
