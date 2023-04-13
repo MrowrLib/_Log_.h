@@ -15,7 +15,7 @@ add_requires("_Logging_")
 ```
 
 ```cmake
-# CMake (coming soon)
+# CMake/vcpkg (coming soon)
 ```
 
 ## What?
