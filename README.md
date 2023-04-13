@@ -96,7 +96,9 @@ Easy.
 
 Just define `_Log_` before including any library headers.
 
-If the `_Log_` macro is defined, then the library will use it.
+If a `_Log_` macro is defined, then this library will use it.
+
+> Optionally also define `_LogToFile_` (defaults to an empty macro).
 
 ## License
 
