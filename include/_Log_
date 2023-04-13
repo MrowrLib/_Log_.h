@@ -1,13 +1,16 @@
 #pragma once
 
-#include <spdlog/sinks/basic_file_sink.h>
-#include <spdlog/sinks/stdout_color_sinks.h>
-#include <spdlog/spdlog.h>
+#ifndef _Log_
+    #if __has_include(<spdlog/spdlog.h>)
 
-#include <functional>
-#include <string>
+        #include <spdlog/sinks/basic_file_sink.h>
+        #include <spdlog/sinks/stdout_color_sinks.h>
+        #include <spdlog/spdlog.h>
 
-namespace _Logging_ {
+        #include <functional>
+        #include <string>
+
+namespace _Log_ {
 
     //! Feel free to place your adapters here!
     namespace Adapters {
@@ -55,11 +58,22 @@ namespace _Logging_ {
     }
 }
 
-#define _Log_(...) \
-    _Logging_::Adapters::Spdlog::SpdlogAdapter::GetSingleton().SpdlogLogger->info(__VA_ARGS__)
+        #define _Log_(...) \
+            _Log_::Adapters::Spdlog::SpdlogAdapter::GetSingleton().SpdlogLogger->info(__VA_ARGS__)
 
-#define _LogToFile_(filePath)                                                   \
-    _Logging_::Adapters::Spdlog::SpdlogAdapter::OnLoadMacroHelperFunctionRunner \
-        __Logging__spdlogLogFilePathSetup {                                     \
-        []() { _Logging_::Adapters::Spdlog::LogFilePath = filePath; }           \
-    }
+        #define _LogToFile_(filePath)                                               \
+            _Log_::Adapters::Spdlog::SpdlogAdapter::OnLoadMacroHelperFunctionRunner \
+                __Log__spdlogLogFilePathSetup {                                     \
+                []() { _Log_::Adapters::Spdlog::LogFilePath = filePath; }           \
+            }
+
+    #endif
+#endif
+
+#ifndef _Log_
+    #define _Log_(...)
+#endif
+
+#ifndef _LogToFile_
+    #define _LogToFile_(...)
+#endif

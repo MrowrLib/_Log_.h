@@ -1,7 +1,7 @@
-# `#include <_Logging_>`
+# `#include <_Log_>`
 
 ```cpp
-#include <_Logging_>
+#include <_Log_>
 
 int main() { _Log_("A great number is: {}", 42); }
 ```
@@ -37,19 +37,19 @@ By default, however, it will do nothing.
 ## Naming?
 
 Searching across GitHub, there are many libraries which...
-- `#include <_Logging_>` or `#include <Log.h>`
+- `#include <_Log_>` or `#include <Log.h>`
 - Have a `Logging` or `Log` class or namespace
 - Have a `Log` or `LOG` or `_log_` or `_LOG_` function or macro
 
 Because _almost all_ of my libraries use this library, I wanted to make **sure** that this library's names were very, **_very_ unlikely to conflict with other libraries**.
 
-Hence `#include <_Logging_>` and `_Log_` / `_LogToFile_`.
+Hence `#include <_Log_>` and `_Log_` / `_LogToFile_`.
 
-I couldn't find anyone using `_Log_()` (_camel case_) across GitHub.
+I couldn't find anyone using `_Log_` (_camel case_) across GitHub.
 
 **You can safely use this in your own libraries**.
 
-> _I also don't like to "sign" my own work, so I didn't want something like `<Mrowr/Logging_>`_
+> _I also don't like to "sign" my own work, so I didn't want something like `<Mrowr/Logging.h>`_
 
 ## Log Levels?
 
@@ -84,7 +84,7 @@ So libraries can safely `_Log_` and it won't do anything.
 
 ### spdlog
 
-If `spdlog` headers are detected when `<_Logging_>` is included, then `_Log_` is defined as a macro that uses `spdlog`.
+If `spdlog` headers are detected when `<_Log_>` is included, then `_Log_` is defined as a macro that uses `spdlog`.
 
 If no target filename is set via `_LogToFile_`, then `spdlog` will log to `stderr`.
 

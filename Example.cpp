@@ -1,4 +1,4 @@
-#include <_Logging_>
+#include <_Log_>
 
 // _LogToFile_("Example.log");
 
