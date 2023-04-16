@@ -1,3 +1,3 @@
 #include <iostream>
 
-void Butts() { std::cout << "Butts!!!!!!!" << std::endl; }
+void Butts() { std::cout << "Butts!" << std::endl; }
