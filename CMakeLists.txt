@@ -45,3 +45,7 @@ install(FILES
     "${CMAKE_CURRENT_BINARY_DIR}/${PROJECT_NAME}ConfigVersion.cmake"
     DESTINATION ${CMAKE_INSTALL_LIBDIR}/cmake/${PROJECT_NAME}
 )
+
+find_package(spdlog CONFIG REQUIRED)
+add_executable(Example Example.cpp)
+target_link_libraries(Example PRIVATE ${PROJECT_NAME} spdlog::spdlog)
