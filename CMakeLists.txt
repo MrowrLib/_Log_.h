@@ -33,7 +33,7 @@ write_basic_package_version_file(
     COMPATIBILITY AnyNewerVersion
 )
 
-file(WRITE ${CMAKE_CURRENT_BINARY_DIR}/${PROJECT_NAME}Config.cmake.in "@PACKAGE_INIT@\n\ninclude(CMakeFindDependencyMacro)\ninclude(\"@CMAKE_CURRENT_LIST_DIR@/@PROJECT_NAME@Targets.cmake\")")
+file(WRITE ${CMAKE_CURRENT_BINARY_DIR}/${PROJECT_NAME}Config.cmake.in "@PACKAGE_INIT@\n\ninclude(CMakeFindDependencyMacro)\ninclude(\"\${CMAKE_CURRENT_LIST_DIR}/${PROJECT_NAME}Targets.cmake\")")
 
 configure_package_config_file(
     "${CMAKE_CURRENT_BINARY_DIR}/${PROJECT_NAME}Config.cmake.in"
