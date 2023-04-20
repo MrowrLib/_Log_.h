@@ -2,6 +2,8 @@ cmake_minimum_required(VERSION 3.21)
 project(_Log_ VERSION 0.1.0 LANGUAGES CXX)
 set(namespace MrowrLib)
 
+option(BUILD_EXAMPLE "Build the example target" ON)
+
 add_library(${PROJECT_NAME} INTERFACE)
 target_include_directories(${PROJECT_NAME} INTERFACE
     $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include>
@@ -46,6 +48,8 @@ install(FILES
     DESTINATION ${CMAKE_INSTALL_LIBDIR}/cmake/${PROJECT_NAME}
 )
 
-find_package(spdlog CONFIG REQUIRED)
-add_executable(Example Example.cpp)
-target_link_libraries(Example PRIVATE ${PROJECT_NAME} spdlog::spdlog)
+if(BUILD_EXAMPLE)
+    find_package(spdlog CONFIG REQUIRED)
+    add_executable(Example Example.cpp)
+    target_link_libraries(Example PRIVATE ${PROJECT_NAME} spdlog::spdlog)
+endif()
