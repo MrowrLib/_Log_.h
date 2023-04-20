@@ -23,7 +23,7 @@ endif()
 install(EXPORT ${PROJECT_NAME}Targets
     FILE ${PROJECT_NAME}Targets.cmake
     NAMESPACE ${namespace}::
-    DESTINATION ${CMAKE_INSTALL_LIBDIR}/cmake/${PROJECT_NAME}
+    DESTINATION share/${PROJECT_NAME}
 )
 
 include(CMakePackageConfigHelpers)
