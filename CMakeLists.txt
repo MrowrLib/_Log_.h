@@ -33,11 +33,11 @@ write_basic_package_version_file(
     COMPATIBILITY AnyNewerVersion
 )
 
-file(WRITE "${CMAKE_CURRENT_BINARY_DIR}/${PROJECT_NAME}Config.cmake.in"
-    [=[
-@PACKAGE_INIT@
-include("${CMAKE_CURRENT_LIST_DIR}/${PROJECT_NAME}Targets.cmake")
-]=])
+string(CONCAT config_cmake_in
+    "@PACKAGE_INIT@\n"
+    "include(\"${CMAKE_CURRENT_LIST_DIR}/${PROJECT_NAME}Targets.cmake\")\n"
+)
+file(WRITE "${CMAKE_CURRENT_BINARY_DIR}/${PROJECT_NAME}Config.cmake.in" "${config_cmake_in}")
 
 configure_package_config_file(
     "${CMAKE_CURRENT_BINARY_DIR}/${PROJECT_NAME}Config.cmake.in"
