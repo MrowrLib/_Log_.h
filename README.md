@@ -8,6 +8,10 @@ void Example() {
 }
 ```
 
+## What?
+
+A simple logging interface for C++ libraries.
+
 ## Installation
 
 ### xmake
@@ -80,10 +84,6 @@ And if you want to use `spdlog`:
 
 > _Update the default-registry baseline to the latest commit from https://github.com/microsoft/vcpkg_  
 > _Update the MrowrLib/Packages baseline to the latest commit from https://github.com/MrowrLib/Packages_
-
-## What?
-
-A simple logging interface for C++ libraries.
 
 ## Why?
 
