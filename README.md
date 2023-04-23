@@ -39,7 +39,7 @@ add_executable(Example main.cpp)
 
 # Find _Log_ and link it to your target
 find_package(_Log_ CONFIG REQUIRED)
-target_link_libraries(Example PRIVATE MrowrLib::_Log_)
+target_link_libraries(Example PRIVATE _Log_::_Log_)
 
 # Also find and link spdlog, if you plan on using it
 find_package(spdlog CONFIG REQUIRED)

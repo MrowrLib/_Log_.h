@@ -1,6 +1,6 @@
 cmake_minimum_required(VERSION 3.21)
 project(_Log_ VERSION 0.1.0 LANGUAGES CXX)
-set(namespace MrowrLib)
+set(namespace _Log_)
 
 option(BUILD_EXAMPLE "Build the example target" ON)
 
