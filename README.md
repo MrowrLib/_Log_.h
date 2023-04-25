@@ -8,21 +8,82 @@ void Example() {
 }
 ```
 
-## Installation
-
-```lua
--- xmake
-add_repositories("MrowrLib https://github.com/MrowrLib/Packages.git")
-add_requires("_Logging_")
-```
-
-```cmake
-# CMake/vcpkg (coming soon)
-```
-
 ## What?
 
 A simple logging interface for C++ libraries.
+
+## Installation
+
+### xmake
+
+#### `xmake.lua`
+
+```lua
+add_repositories("MrowrLib https://github.com/MrowrLib/Packages.git")
+add_requires("_Log_")
+
+-- And if you want to use spdlog for log output
+add_requires("spdlog")
+
+target("Example")
+    add_packages("_Log_")
+    add_packages("spdlog") -- if using 'spdlog'
+```
+
+### vcpkg
+
+#### `CMakeLists.txt`
+
+```cmake
+add_executable(Example main.cpp)
+
+# Find _Log_ and link it to your target
+find_package(_Log_ CONFIG REQUIRED)
+target_link_libraries(Example PRIVATE _Log_::_Log_)
+
+# Also find and link spdlog, if you plan on using it
+find_package(spdlog CONFIG REQUIRED)
+target_link_libraries(Example PRIVATE spdlog::spdlog)
+```
+
+#### `vcpkg.json`
+
+```json
+{
+    "dependencies": ["mrowr-log"]
+}
+```
+
+And if you want to use `spdlog`:
+
+```json
+{
+    "dependencies": ["mrowr-log", "spdlog"]
+}
+```
+
+#### `vcpkg-configuration.json`
+
+```json
+{
+    "default-registry": {
+        "kind": "git",
+        "repository": "https://github.com/microsoft/vcpkg.git",
+        "baseline": "95252eadd63118201b0d0df0b4360fa613f0de84"
+    },
+    "registries": [
+        {
+            "kind": "git",
+            "repository": "https://github.com/MrowrLib/Packages.git",
+            "baseline": "6e1884a73e89d614682de6c28107ef888d99f8a1",
+            "packages": ["mrowr-log"]
+        }
+    ]
+}
+```
+
+> _Update the default-registry baseline to the latest commit from https://github.com/microsoft/vcpkg_  
+> _Update the MrowrLib/Packages baseline to the latest commit from https://github.com/MrowrLib/Packages_
 
 ## Why?
 
