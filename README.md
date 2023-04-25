@@ -75,7 +75,7 @@ And if you want to use `spdlog`:
         {
             "kind": "git",
             "repository": "https://github.com/MrowrLib/Packages.git",
-            "baseline": "6e1884a73e89d614682de6c28107ef888d99f8a1",
+            "baseline": "6f0ebfdec5710f4ba1cd1628b58581119501296e",
             "packages": ["mrowr-log"]
         }
     ]
