@@ -18,9 +18,6 @@ namespace _Log_ {
         //! Namespace containing everything needed for the spdlog adapter.
         namespace Spdlog {
 
-            //! The path to the log file used by spdlog.
-            std::string LogFilePath;
-
             class SpdlogAdapter {
                 ~SpdlogAdapter()                               = default;
                 SpdlogAdapter(const SpdlogAdapter&)            = delete;
@@ -38,6 +35,8 @@ namespace _Log_ {
 
             public:
                 std::shared_ptr<spdlog::logger> SpdlogLogger;
+
+                std::string LogFilePath;
 
                 static SpdlogAdapter& GetSingleton() {
                     static SpdlogAdapter singleton;
@@ -61,10 +60,12 @@ namespace _Log_ {
         #define _Log_(...) \
             _Log_::Adapters::Spdlog::SpdlogAdapter::GetSingleton().SpdlogLogger->info(__VA_ARGS__)
 
-        #define _LogToFile_(filePath)                                               \
-            _Log_::Adapters::Spdlog::SpdlogAdapter::OnLoadMacroHelperFunctionRunner \
-                __Log__spdlogLogFilePathSetup {                                     \
-                []() { _Log_::Adapters::Spdlog::LogFilePath = filePath; }           \
+        #define _LogToFile_(filePath)                                                              \
+            _Log_::Adapters::Spdlog::SpdlogAdapter::OnLoadMacroHelperFunctionRunner                \
+                __Log__spdlogLogFilePathSetup {                                                    \
+                []() {                                                                             \
+                    _Log_::Adapters::Spdlog::SpdlogAdapter::GetSingleton().LogFilePath = filePath; \
+                }                                                                                  \
             }
 
     #endif
