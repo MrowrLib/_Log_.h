@@ -2,4 +2,8 @@
 
 // _LogToFile_("Example.log");
 
-int main() { _Log_("Hello {}", "World"); }
+int main() {
+    _Log_("Hello {}", "World");
+    // _LogToFile_("");
+    _Log_("Hello {}", "World AGAIN");
+}
