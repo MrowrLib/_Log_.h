@@ -126,18 +126,39 @@ I couldn't find anyone using `_Log_` (_camel case_) across GitHub.
 
 If you `#include <_Log_/_Log_.h>` then you only get `_Log_` (defaults to `info`)
 
-...
+If you `#include <_Log_/_Debug_.h>` then you get  `_Debug_` (and so on...)
+
+If you `#include <_Log_.h>` then you get all of the log levels.
+
+> To change the default log level for `_Log_`:
+> ```cpp
+> #include <_Log_/LogLevels/warn.h> // Must be BEFORE the Log includes
+>
+> // Then...
+> #include <_Log_.h>
+>
+> // Or...
+> #include <_Log_/_Critical_.h> // etc...
+> ```
 
 ## How?
 
-I simplified it all down to two macros:
+I simplified it all down to a simple macros:
 
 ```cpp
+#include <_Log_.h>
+
 // Log a message
 _Log_("A great number is: {}", 42);
 
 // Set a target filename for the log
 _LogToFile_("my.log"); // (Optional)
+
+// Change the log level
+_SetLogLevel_(warn);
+
+// Or use any of the other macros of different log levels:
+_Error_("Oh noes!");
 ```
 
 > _Recommendation: never use `_LogToFile_` in libraries. It's global. Let users configure this._  
@@ -151,13 +172,13 @@ By default, `_Log_` is defined as a macro that does nothing.
 
 So libraries can safely `_Log_` and it won't do anything.
 
+> _The same is true of ALL macros. They do NOTHING by default._
+
 ### spdlog
 
 If `spdlog` headers are detected when `<_Log_.h>` is included, then `_Log_` is defined as a macro that uses `spdlog`.
 
 If no target filename is set via `_LogToFile_`, then `spdlog` will log to `stderr`.
-
-> Note: `_LogToFile_` must be called before any calls to `_Log_` or the default `stderr` logger will be used.
 
 ### Bring Your Own Logger
 
@@ -167,7 +188,8 @@ Just define `_Log_` before including any library headers.
 
 If a `_Log_` macro is defined, then this library will use it.
 
-> Optionally also define `_LogToFile_` (defaults to an empty macro).
+> Optionally also define `_LogToFile_` (defaults to an empty macro)  
+> and whichever log levels you want to implement (etc)
 
 ## License
 
