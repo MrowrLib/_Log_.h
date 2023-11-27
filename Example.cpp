@@ -1,6 +1,6 @@
 // Uncomment to change the default log level of _Log_
 // It MUST be defined BEFORE including _Log_.h
-// #define _Log_DefaultLevel_ trace
+// #define _Log_DefaultLevel_ error
 
 #include <_Log_.h>
 
@@ -9,7 +9,7 @@ int main() {
     // _LogToFile_("Example.log");
 
     // Uncomment to test setting a specific log level
-    // _SetLogLevel_(debug);
+    _SetLogLevel_(info);
 
     _Trace_("Trace");
     _Debug_("Debug");

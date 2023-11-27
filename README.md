@@ -95,7 +95,7 @@ Want to use `spdlog`? Great!
 
 This will _automatically_ detect `spdlog` and use it.
 
-By default, however, it will do nothing.
+By default, however, it will do **nothing**.
 
 ## Naming?
 
@@ -116,11 +116,17 @@ I couldn't find anyone using `_Log_` (_camel case_) across GitHub.
 
 ## Log Levels?
 
-Meh.
+~~Meh.~~
 
-Use your own logger if you want log levels.
+~~Use your own logger if you want log levels.~~
 
-I really wanted **one** simple `_Log_` macro that would work for all libraries.
+~~I really wanted **one** simple `_Log_` macro that would work for all libraries.~~
+
+**Update:** I eventually added log levels 😹
+
+If you `#include <_Log_/_Log_.h>` then you only get `_Log_` (defaults to `info`)
+
+...
 
 ## How?
 

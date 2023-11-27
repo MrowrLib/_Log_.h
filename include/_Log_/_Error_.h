@@ -1,18 +1,7 @@
 #pragma once
 
-#include "_Log_.h"
+// First, try spdlog in case it's available
+#include "Adapters/spdlog/_Error_.h"  // IWYU pragma: keep
 
-#ifndef _Error_
-    #if __has_include(<spdlog/spdlog.h>)
-
-        #define _Error_(...)                                                                 \
-            _Log_::Adapters::Spdlog::SpdlogAdapter::GetSingleton().GetSpdlogLogger()->error( \
-                __VA_ARGS__                                                                  \
-            )
-
-    #endif
-#endif
-
-#ifndef _Error_
-    #define _Error_(...) _Log_(__VA_ARGS__)
-#endif
+// Then fall back to an empty definition
+#include "Adapters/none/_Error_.h"  // IWYU pragma: keep
