@@ -6,7 +6,7 @@
 
 int main() {
     // Uncomment to test setting a specific log file path
-    // _LogToFile_("Example.log");
+    _LogToFile_("Example.log");
 
     // Uncomment to test setting a specific log level
     _SetLogLevel_(info);
@@ -16,7 +16,7 @@ int main() {
     _Info_("Info");
     _Warn_("Warn");
     _Error_("Error");
-    _Critical_("Critical");
+    _Fatal_("Fatal");
 
     // Standard '_Log_' which you get from just #include <_Log_/Log.h>
     // (INFO unless #define _Log_DefaultLevel_ is set BEFORE including _Log_.h)
