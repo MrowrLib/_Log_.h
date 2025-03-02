@@ -46,6 +46,10 @@ namespace _Log_ {
                     ReconfigureSpdlogger();
                 }
 
+                void SetSpdlogLogger(const std::shared_ptr<spdlog::logger>& spdlogLogger) {
+                    _spdlogLogger = spdlogLogger;
+                }
+
                 std::shared_ptr<spdlog::logger>& GetSpdlogLogger() {
                     if (!_spdlogLogger) ReconfigureSpdlogger();
                     return _spdlogLogger;
