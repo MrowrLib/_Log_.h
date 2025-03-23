@@ -1,13 +1,12 @@
 #pragma once
 
-#include "Adapter.h"  // IWYU pragma: keep
-
 #ifndef _Trace_
     #if __has_include(<spdlog/spdlog.h>)
+        #include "Adapter.h"  // IWYU pragma: export
 
-        #define _Trace_(...)                                                                 \
-            _Log_::Adapters::Spdlog::SpdlogAdapter::GetSingleton().GetSpdlogLogger()->trace( \
-                __VA_ARGS__                                                                  \
+        #define _Trace_(...)                                                              \
+            SPDLOG_LOGGER_TRACE(                                                          \
+                _Log_::Adapters::Spdlog::SpdlogAdapter::singleton().logger(), __VA_ARGS__ \
             )
 
     #endif

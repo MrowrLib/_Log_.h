@@ -1,7 +1,7 @@
 #pragma once
 
-#ifndef _Debug_
-
-    #define _Debug_(...)
-
+#ifdef _Debug_
+    #undef _Debug_
 #endif
+
+#define _Debug_(...)

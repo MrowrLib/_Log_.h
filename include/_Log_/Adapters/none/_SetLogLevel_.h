@@ -1,7 +1,7 @@
 #pragma once
 
-#ifndef _SetLogLevel_
-
-    #define _SetLogLevel_(...)
-
+#ifdef _SetLogLevel_
+    #undef _SetLogLevel_
 #endif
+
+#define _SetLogLevel_(...)

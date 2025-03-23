@@ -1,7 +1,7 @@
 #pragma once
 
-#ifndef _Log_
-
-    #define _Log_(...)
-
+#ifdef _Log_
+    #undef _Log_
 #endif
+
+#define _Log_(...)

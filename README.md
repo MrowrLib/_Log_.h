@@ -5,12 +5,56 @@
 
 void Example() {
     _Log_("A great number is: {}", 42);
+    
+    // Or use any of the other macros of different log levels:
+    _Error_("Oh noes!");
+    _Debug_("Debugging...");
+    
+    // Specify a level (default: trace)
+    _SetLogLevel_(warn);
+    
+    // Specify a log file (default: console)
+    _LogToFile_("my.log");
 }
 ```
 
 ## What?
 
 A simple logging interface for C++ libraries.
+
+## Why?
+
+I truly don't care what logging library I'm using.
+
+Just do it. Log the thing. Make it go, please.
+
+> **Except** _sometimes_ I _do_ care.
+>
+> And in those scenarios, I want to be able to use my own logger. But use the same lazy `_Log_()` syntax.
+>
+> As there are only a few really simple macros, it's really easy to completely override them with your own implementation.
+> - `_Log_(...)`
+> - `_Trace_(...)`
+> - `_Debug_(...)`
+> - `_Info_(...)`
+> - `_Warn_(...)`
+> - `_Error_(...)`
+> - `_Fatal_(...)`
+> - `_SetLogLevel_(...)`
+> - `_LogToFile_(...)`
+>
+> If you only care about the `_Log_` macro, your programs can:
+> ```cpp
+> #include <_Log_/_Log_.h>
+> ```
+>
+> And that will use the default `spdlog` implementation but the ONLY macro added to your program will be `_Log_`.
+>
+> And, of course, this makes it really easy to override:
+> ```cpp
+> #define _Log_(...) myLogger.log(__VA_ARGS__)
+> #include <_Log_/_Log_.h>
+> ```
 
 ## Installation
 
@@ -22,12 +66,8 @@ A simple logging interface for C++ libraries.
 add_repositories("MrowrLib https://github.com/MrowrLib/Packages.git")
 add_requires("_Log_")
 
--- And if you want to use spdlog for log output
-add_requires("spdlog")
-
 target("Example")
     add_packages("_Log_")
-    add_packages("spdlog") -- if using 'spdlog'
 ```
 
 ### vcpkg
@@ -40,10 +80,6 @@ add_executable(Example main.cpp)
 # Find _Log_ and link it to your target
 find_package(_Log_ CONFIG REQUIRED)
 target_link_libraries(Example PRIVATE _Log_::_Log_)
-
-# Also find and link spdlog, if you plan on using it
-find_package(spdlog CONFIG REQUIRED)
-target_link_libraries(Example PRIVATE spdlog::spdlog)
 ```
 
 #### `vcpkg.json`
@@ -85,18 +121,6 @@ And if you want to use `spdlog`:
 > _Update the default-registry baseline to the latest commit from https://github.com/microsoft/vcpkg_  
 > _Update the MrowrLib/Packages baseline to the latest commit from https://github.com/MrowrLib/Packages_
 
-## Why?
-
-I want my libraries to all support logging.
-
-But I want folks to be able to BYOL: **B**ring **Y**our **O**wn **L**ogger.
-
-Want to use `spdlog`? Great!
-
-This will _automatically_ detect `spdlog` and use it.
-
-By default, however, it will do **nothing**.
-
 ## Naming?
 
 Searching across GitHub, there are many libraries which...
@@ -114,71 +138,15 @@ I couldn't find anyone using `_Log_` (_camel case_) across GitHub.
 
 > _I also don't like to "sign" my own work, so I didn't want something like `<Mrowr/Logging.h>`_
 
-## Log Levels?
-
-~~Meh.~~
-
-~~Use your own logger if you want log levels.~~
-
-~~I really wanted **one** simple `_Log_` macro that would work for all libraries.~~
-
-**Update:** I eventually added log levels 😹
-
-If you `#include <_Log_/_Log_.h>` then you only get `_Log_` (defaults to `info`)
-
-If you `#include <_Log_/_Debug_.h>` then you get  `_Debug_` (and so on...)
-
-If you `#include <_Log_.h>` then you get all of the log levels.
-
-> To change the default log level for `_Log_`:
-> ```cpp
-> #include <_Log_/LogLevels/warn.h> // Must be BEFORE the Log includes
->
-> // Then...
-> #include <_Log_.h>
->
-> // Or...
-> #include <_Log_/_Fatal_.h> // etc...
-> ```
-
-## How?
-
-I simplified it all down to a simple macros:
-
-```cpp
-#include <_Log_.h>
-
-// Log a message
-_Log_("A great number is: {}", 42);
-
-// Set a target filename for the log
-_LogToFile_("my.log"); // (Optional)
-
-// Change the log level
-_SetLogLevel_(warn);
-
-// Or use any of the other macros of different log levels:
-_Error_("Oh noes!");
-```
-
-> _Recommendation: never use `_LogToFile_` in libraries. It's global. Let users configure this._  
-> _(You can always provide your own interface for users to configure it)_
-
-This makes it _super easy_ for folks to use their own logging libraries.
-
 ### No Logging
 
-By default, `_Log_` is defined as a macro that does nothing.
+By default, `_Log_` logs using `spdlog` to console (_or file if you specify it_).
 
-So libraries can safely `_Log_` and it won't do anything.
+If you want to disable all logging entirely:
 
-> _The same is true of ALL macros. They do NOTHING by default._
-
-### spdlog
-
-If `spdlog` headers are detected when `<_Log_.h>` is included, then `_Log_` is defined as a macro that uses `spdlog`.
-
-If no target filename is set via `_LogToFile_`, then `spdlog` will log to `stderr`.
+```cpp
+#include <_Log_/Disable.h>
+```
 
 ### Bring Your Own Logger
 

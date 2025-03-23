@@ -1,7 +1,7 @@
 #pragma once
 
-#ifndef _Error_
-
-    #define _Error_(...)
-
+#ifdef _Error_
+    #undef _Error_
 #endif
+
+#define _Error_(...)

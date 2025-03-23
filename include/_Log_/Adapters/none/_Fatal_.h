@@ -1,7 +1,7 @@
 #pragma once
 
-#ifndef _Fatal_
-
-    #define _Fatal_(...)
-
+#ifdef _Fatal_
+    #undef _Fatal_
 #endif
+
+#define _Fatal_(...)

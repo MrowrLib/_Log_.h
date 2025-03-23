@@ -1,18 +1,27 @@
-set_languages("c++20")
-add_rules("mode.debug")
+add_rules("mode.debug", "mode.release")
 
-add_repositories("MrowrLib https://github.com/MrowrLib/Packages.git")
+-- Support way, way back to C++14
+-- MSVC doesn't even understand C++11 lol
+set_languages("c++14")
 
--- Required for the example, but you can bring your own logger and add an adapter
-add_requires("spdlog", "string_format")
+option("build_example")
+    set_default(true)
+option_end()
 
-target("_Log_")
-    set_kind("headeronly")
+add_requires("spdlog")
+
+library_name = "_Log_"
+
+target(library_name)
+    set_kind("static")
+    add_files("src/*.cpp")
     add_headerfiles("include/_Log_.h")
-    add_includedirs("include", {public = true})
+    add_includedirs("include", { public = true })
+    add_packages("spdlog", { public = true })
 
-target("Example")
-    set_kind("binary")
-    add_files("Example.cpp")
-    add_deps("_Log_")
-    add_packages("string_format", "spdlog")
+if has_config("build_example") then
+    target("Example")
+        set_kind("binary")
+        add_files("Example.cpp")
+        add_deps(library_name)
+end

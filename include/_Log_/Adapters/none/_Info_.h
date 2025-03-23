@@ -1,7 +1,7 @@
 #pragma once
 
-#ifndef _Info_
-
-    #define _Info_(...)
-
+#ifdef _Info_
+    #undef _Info_
 #endif
+
+#define _Info_(...)

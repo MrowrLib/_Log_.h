@@ -1,7 +1,7 @@
 #pragma once
 
-#ifndef _Trace_
-
-    #define _Trace_(...)
-
+#ifdef _Trace_
+    #undef _Trace_
 #endif
+
+#define _Trace_(...)

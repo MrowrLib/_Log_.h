@@ -1,13 +1,12 @@
 #pragma once
 
-#include "Adapter.h"  // IWYU pragma: keep
-
 #ifndef _Fatal_
     #if __has_include(<spdlog/spdlog.h>)
+        #include "Adapter.h"  // IWYU pragma: export
 
-        #define _Fatal_(...)                                                                    \
-            _Log_::Adapters::Spdlog::SpdlogAdapter::GetSingleton().GetSpdlogLogger()->critical( \
-                __VA_ARGS__                                                                     \
+        #define _Fatal_(...)                                                              \
+            SPDLOG_LOGGER_CRITICAL(                                                       \
+                _Log_::Adapters::Spdlog::SpdlogAdapter::singleton().logger(), __VA_ARGS__ \
             )
 
     #endif

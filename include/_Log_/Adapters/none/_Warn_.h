@@ -1,7 +1,7 @@
 #pragma once
 
-#ifndef _Warn_
-
-    #define _Warn_(...)
-
+#ifdef _Warn_
+    #undef _Warn_
 #endif
+
+#define _Warn_(...)
