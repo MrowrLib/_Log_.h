@@ -105,13 +105,13 @@ And if you want to use `spdlog`:
     "default-registry": {
         "kind": "git",
         "repository": "https://github.com/microsoft/vcpkg.git",
-        "baseline": "95252eadd63118201b0d0df0b4360fa613f0de84"
+        "baseline": "670f6dddaafc59c5dfe0587a130d59a35c48ea38"
     },
     "registries": [
         {
             "kind": "git",
             "repository": "https://github.com/MrowrLib/Packages.git",
-            "baseline": "eab80da25303df9f93918b1d1cf65d25a1119718",
+            "baseline": "6887c023180286b54b805f50ec33eab3f30e4818",
             "packages": ["mrowr-log"]
         }
     ]
